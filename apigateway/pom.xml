@@ -5,7 +5,7 @@
 
 	<groupId>com.erayzal.springbootsandbox</groupId>
 	<artifactId>apigateway</artifactId>
-	<version>1.0.0-SNAPTSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>apigateway</name>

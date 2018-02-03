@@ -10,10 +10,21 @@ spring:
     name: eureka
 
 eureka:
+  server:
+      waitTimeInMsWhenSyncEmpty: 0
   instance:
     hostname: localhost
+
   client:
     registerWithEureka: true # so the Admin Server can discover eureka
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://microservice:pwd@localhost:8082/eureka/
+
+security:
+  basic:
+    enabled: false
+  user:
+      name: microservice
+      password: pwd
