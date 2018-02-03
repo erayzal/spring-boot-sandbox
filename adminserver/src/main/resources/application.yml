@@ -1,0 +1,19 @@
+server:
+  port: 8084
+
+management:
+  port: 8085
+  security.enabled: false
+
+
+spring:
+  application:
+    name: adminserver
+
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/

@@ -1,0 +1,19 @@
+server:
+  port: 8086
+
+management:
+#  port: 8087
+  security.enabled: false
+
+
+spring:
+  application:
+    name: apigateway
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
+
