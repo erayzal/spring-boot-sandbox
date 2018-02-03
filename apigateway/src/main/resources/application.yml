@@ -2,7 +2,7 @@ server:
   port: 8086
 
 management:
-#  port: 8087
+  port: 8087
   security.enabled: false
 
 
@@ -17,3 +17,13 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8082/eureka/
 
+---
+
+spring:
+  profiles: numbertwo
+
+server:
+  port: 8088
+
+management:
+  port: 8089
