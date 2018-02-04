@@ -11,19 +11,15 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Eureka clients couldn't register with CSRF enabled
-        // Message was : Could not verify the provided CSRF token because your session was not found.
-        http.csrf().disable();
+        http.csrf().ignoringAntMatchers("/eureka/**");
 
         http.authorizeRequests()
-                .antMatchers("/eureka/**").authenticated()
-                .anyRequest().permitAll()
+                .antMatchers("/eureka/**").hasRole("EUREKA_CLIENT")
                 .and()
                 .httpBasic();
-
     }
 
     @Override
@@ -34,9 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
-        inMemoryUserDetailsManager.createUser(User.withUsername("microservice").password("pwd").roles("MICROSERVICE").build());
+        inMemoryUserDetailsManager.createUser(User.withUsername("microservice").password("pwd").roles("EUREKA_CLIENT").build());
         return inMemoryUserDetailsManager;
     }
-
 
 }

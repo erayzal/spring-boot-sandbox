@@ -17,14 +17,14 @@ eureka:
 
   client:
     registerWithEureka: true # so the Admin Server can discover eureka
+#    initial-instance-info-replication-interval-seconds: 10 # wait to be sure that the server is started
     fetchRegistry: false
     serviceUrl:
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       defaultZone: http://microservice:pwd@localhost:8082/eureka/
 
 security:
   basic:
-    enabled: false
+    enabled: true
   user:
       name: microservice
       password: pwd
