@@ -1,8 +1,5 @@
 
 
-management:
-  port: 0 # use a random value for tests
-
 eureka:
   client:
     registerWithEureka: false

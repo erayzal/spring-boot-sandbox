@@ -20,6 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/eureka/**").hasRole("EUREKA_CLIENT")
                 .and()
                 .httpBasic();
+
     }
 
     @Override
@@ -30,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
-        inMemoryUserDetailsManager.createUser(User.withUsername("microservice").password("pwd").roles("EUREKA_CLIENT").build());
+        inMemoryUserDetailsManager.createUser(User.withUsername("microservice").password("pwd").roles("EUREKA_CLIENT", "ACTUATOR").build());
         return inMemoryUserDetailsManager;
     }
 

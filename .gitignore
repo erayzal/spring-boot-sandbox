@@ -22,3 +22,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_netflix_eureka_server_1_4_2_RELEASE.xml

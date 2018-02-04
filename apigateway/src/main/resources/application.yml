@@ -2,8 +2,11 @@ server:
   port: 8086
 
 management:
-  port: 8087
-  security.enabled: false
+  security.enabled: true
+  info:
+    git:
+      mode: simple
+  context-path: /actuator
 
 
 spring:
@@ -11,11 +14,25 @@ spring:
     name: apigateway
 
 eureka:
+  instance:
+    metadata-map: # so the Admin Server can get the login / password and connect
+      user.name: microservice
+      user.password: pwd
+      management.context-path: ${management.context-path}
+
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://microservice:pwd@localhost:8082/eureka/
+
+
+security:
+  basic:
+    enabled: true
+  user:
+      name: microservice
+      password: pwd
 
 ---
 
@@ -24,6 +41,3 @@ spring:
 
 server:
   port: 8088
-
-management:
-  port: 8089

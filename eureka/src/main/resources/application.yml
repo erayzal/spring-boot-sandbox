@@ -2,8 +2,12 @@ server:
   port: 8082
 
 management:
-  port: 8083
-  security.enabled: false
+  security.enabled: true
+  info:
+    git:
+      mode: simple
+  context-path: /actuator
+
 
 spring:
   application:
@@ -12,12 +16,16 @@ spring:
 eureka:
   server:
       waitTimeInMsWhenSyncEmpty: 0
+
   instance:
     hostname: localhost
+    metadata-map: # so the Admin Server can get the login / password and connect
+      user.name: microservice
+      user.password: pwd
+      management.context-path: ${management.context-path}
 
   client:
     registerWithEureka: true # so the Admin Server can discover eureka
-#    initial-instance-info-replication-interval-seconds: 10 # wait to be sure that the server is started
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://microservice:pwd@localhost:8082/eureka/
