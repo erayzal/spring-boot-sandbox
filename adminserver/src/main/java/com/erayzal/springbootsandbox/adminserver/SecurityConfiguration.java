@@ -1,6 +1,7 @@
 package com.erayzal.springbootsandbox.adminserver;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -25,6 +26,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/login.html", "/**/*.css", "/img/**", "/third-party/**")
                 .permitAll();
+
+        // Modifying stuff is only allowed for admins
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/api/applications/**").hasRole("ADMIN");
+        http.authorizeRequests()
+                .antMatchers("/api/applications/**/heapdump").hasRole("ADMIN");
+
         // ... and any other request needs to be authorized
         http.authorizeRequests().antMatchers("/**").authenticated();
 
