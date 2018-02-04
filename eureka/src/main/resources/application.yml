@@ -28,7 +28,8 @@ eureka:
     registerWithEureka: true # so the Admin Server can discover eureka
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://microservice:pwd@localhost:8082/eureka/
+      defaultZone: http://microservice:${security.user.password}@localhost:8082/eureka/
+
 
 security:
   basic:
