@@ -17,7 +17,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,7 +37,7 @@ public class EurekaSecurityTests {
 	@Test
 	public void anonymous_access_to_home_should_be_authorized() throws Exception {
 		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.TEXT_HTML));
+		headers.setAccept(Collections.singletonList(MediaType.TEXT_HTML));
 		ResponseEntity<String> entity = this.restTemplate.exchange("/", HttpMethod.GET,
 				new HttpEntity<Void>(headers), String.class);
 		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -46,7 +46,7 @@ public class EurekaSecurityTests {
     @Test
     public void anonymous_access_to_eureka_should_be_unauthorized() throws Exception {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         ResponseEntity<String> entity = this.restTemplate.exchange("/eureka/apps", HttpMethod.GET,
                 new HttpEntity<Void>(headers), String.class);
@@ -56,7 +56,7 @@ public class EurekaSecurityTests {
     @Test
     public void anonymous_access_to_actuator_should_be_unauthorized() throws Exception {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         ResponseEntity<String> entity = this.restTemplate.exchange("/actuator/env", HttpMethod.GET,
                 new HttpEntity<Void>(headers), String.class);
@@ -66,7 +66,7 @@ public class EurekaSecurityTests {
     @Test
     public void authenticated_access_to_actuator_should_return_information() throws Exception {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         BasicAuthorizationInterceptor basicAuthInterceptor = new BasicAuthorizationInterceptor(
                 "microservice", "pwd");
         try {
@@ -82,7 +82,7 @@ public class EurekaSecurityTests {
     @Test
     public void authenticated_access_to_eureka_should_return_applications_information() throws Exception {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         BasicAuthorizationInterceptor basicAuthInterceptor = new BasicAuthorizationInterceptor(
                 "microservice", "pwd");
         try {

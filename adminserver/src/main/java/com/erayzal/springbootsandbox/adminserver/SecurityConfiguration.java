@@ -12,7 +12,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        // Originaly copied from :
+        // Originally copied from :
         //    https://github.com/codecentric/spring-boot-admin/tree/1.5.x/spring-boot-admin-samples/spring-boot-admin-sample
 
         // Page with login form is served as /login.html and does a POST on /login

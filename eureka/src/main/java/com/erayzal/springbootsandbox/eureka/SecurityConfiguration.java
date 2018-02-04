@@ -20,7 +20,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/eureka/**").hasRole("EUREKA_CLIENT")
                 .and()
                 .httpBasic();
-
     }
 
     @Override
