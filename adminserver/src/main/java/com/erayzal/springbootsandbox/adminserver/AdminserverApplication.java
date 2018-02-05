@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAdminServer
 public class AdminserverApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AdminserverApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AdminserverApplication.class, args);
+    }
 }

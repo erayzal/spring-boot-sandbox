@@ -28,20 +28,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("test")
 public class EurekaSecurityTests {
 
-	@LocalServerPort
-	private int port;
+    @LocalServerPort
+    private int port;
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+    @Autowired
+    private TestRestTemplate restTemplate;
 
-	@Test
-	public void anonymous_access_to_home_should_be_authorized() throws Exception {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Collections.singletonList(MediaType.TEXT_HTML));
-		ResponseEntity<String> entity = this.restTemplate.exchange("/", HttpMethod.GET,
-				new HttpEntity<Void>(headers), String.class);
-		assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-	}
+    @Test
+    public void anonymous_access_to_home_should_be_authorized() throws Exception {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.TEXT_HTML));
+        ResponseEntity<String> entity = this.restTemplate.exchange("/", HttpMethod.GET,
+                new HttpEntity<Void>(headers), String.class);
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 
     @Test
     public void anonymous_access_to_eureka_should_be_unauthorized() throws Exception {
@@ -79,6 +79,7 @@ public class EurekaSecurityTests {
             this.restTemplate.getRestTemplate().getInterceptors().remove(basicAuthInterceptor);
         }
     }
+
     @Test
     public void authenticated_access_to_eureka_should_return_applications_information() throws Exception {
         HttpHeaders headers = new HttpHeaders();
