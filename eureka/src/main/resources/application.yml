@@ -32,8 +32,6 @@ eureka:
 
 
 security:
-  basic:
-    enabled: true
   user:
       name: microservice
       password: pwd

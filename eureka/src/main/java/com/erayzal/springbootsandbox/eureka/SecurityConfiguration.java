@@ -16,6 +16,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // Eureka clients couldn't register with CSRF enabled
         http.csrf().ignoringAntMatchers("/eureka/**");
 
+        // Allow access to resources used by the eureka status page without authentication.
+        // (as an exercice, this might not be a good idea in real life)
+        http.authorizeRequests()
+                .antMatchers("/eureka/css/**", "/eureka/fonts/**", "/eureka/js/**", "/eureka/images/**")
+                .permitAll();
+
         http.authorizeRequests()
                 .antMatchers("/eureka/**").hasRole("EUREKA_CLIENT")
                 .and()
